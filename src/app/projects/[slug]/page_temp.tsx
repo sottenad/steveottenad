@@ -62,7 +62,7 @@ export default async function ProjectPage({ params }: PageProps) {
           Project Not Found
         </h1>
         <p className="text-muted-foreground mb-8">
-          The project you're looking for doesn't exist or has been moved.
+          The project you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <Link 
           href="/projects/"
@@ -151,16 +151,16 @@ export default async function ProjectPage({ params }: PageProps) {
                 remarkPlugins={[remarkGfm]}
                 components={{
                   // Let custom CSS handle the styling through our case-study-content class
-                  h1: ({node, ...props}) => <h1 {...props} />,
-                  h2: ({node, ...props}) => <h2 {...props} />,
-                  h3: ({node, ...props}) => <h3 {...props} />,
-                  p: ({node, ...props}) => <p {...props} />,
-                  ul: ({node, ...props}) => <ul {...props} />,
-                  ol: ({node, ...props}) => <ol {...props} />,
-                  li: ({node, ...props}) => <li {...props} />,
-                  blockquote: ({node, ...props}) => <blockquote {...props} />,
-                  code: ({node, ...props}) => <code {...props} />,
-                  a: ({node, ...props}) => <a {...props} />,
+                  h1: ({...props}) => <h1 {...props} />,
+                  h2: ({...props}) => <h2 {...props} />,
+                  h3: ({...props}) => <h3 {...props} />,
+                  p: ({...props}) => <p {...props} />,
+                  ul: ({...props}) => <ul {...props} />,
+                  ol: ({...props}) => <ol {...props} />,
+                  li: ({...props}) => <li {...props} />,
+                  blockquote: ({...props}) => <blockquote {...props} />,
+                  code: ({...props}) => <code {...props} />,
+                  a: ({...props}) => <a {...props} />,
                 }}
               >
                 {markdownContent || ''}

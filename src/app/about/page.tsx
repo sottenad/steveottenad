@@ -69,7 +69,7 @@ export default function AboutPage() {
               <p className="text-muted-foreground">
                 My recent work has centered on multimodal applications, fine-tuning models for 
                 specific domains, and developing rigorous evaluation frameworks for AI systems. 
-                I'm particularly interested in building tools that enable creative applications 
+                I&apos;m particularly interested in building tools that enable creative applications 
                 of AI technology.
               </p>
               

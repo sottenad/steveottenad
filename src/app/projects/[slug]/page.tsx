@@ -31,15 +31,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   if (!project) {
     return (
       <div className="py-20 text-center">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+        <h1 className="text-2xl font-bold text-secondary mb-4">
           Project Not Found
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
+        <p className="text-muted-foreground mb-8">
           The project you're looking for doesn't exist or has been moved.
         </p>
         <Link 
           href="/projects/"
-          className="inline-flex items-center justify-center bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
+          className="btn-primary px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center"
         >
           View All Projects
         </Link>
@@ -52,20 +52,20 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       <div className="max-w-screen-lg mx-auto px-4">
         {/* Breadcrumb */}
         <nav className="mb-8">
-          <ol className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+          <ol className="flex items-center text-sm text-muted-foreground">
             <li>
-              <Link href="/" className="hover:text-blue-600 dark:hover:text-blue-400">
+              <Link href="/" className="hover:text-accent transition-colors">
                 Home
               </Link>
             </li>
             <li className="mx-2">/</li>
             <li>
-              <Link href="/projects/" className="hover:text-blue-600 dark:hover:text-blue-400">
+              <Link href="/projects/" className="hover:text-accent transition-colors">
                 Projects
               </Link>
             </li>
             <li className="mx-2">/</li>
-            <li className="text-gray-900 dark:text-white font-medium">
+            <li className="text-secondary font-medium">
               {project.title}
             </li>
           </ol>
@@ -73,55 +73,55 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         
         {/* Project Header */}
         <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
             {project.title}
           </h1>
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                className="tag"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <p className="text-xl text-gray-700 dark:text-gray-300">
+          <p className="text-xl text-primary">
             {project.description}
           </p>
         </div>
         
         {/* Project Image */}
-        <div className="relative aspect-video w-full bg-gray-200 dark:bg-gray-800 rounded-xl mb-12 flex items-center justify-center text-gray-400 dark:text-gray-600 text-6xl font-medium">
+        <div className="relative aspect-video w-full bg-primary/10 rounded-xl mb-12 flex items-center justify-center text-primary text-6xl font-medium">
           {project.title.charAt(0)}
         </div>
         
         {/* Project Content - Sample */}
-        <div className="prose prose-gray dark:prose-invert max-w-none">
-          <h2>Project Overview</h2>
-          <p>
+        <div className="prose prose-stone dark:prose-invert max-w-none">
+          <h2 className="text-secondary">Project Overview</h2>
+          <p className="text-muted-foreground">
             This is a sample project content for {project.title}. In a real implementation, 
             this would contain the full case study with details about the project objectives, 
             approach, implementation, results, and learnings.
           </p>
           
-          <h2>Challenge</h2>
-          <p>
+          <h2 className="text-secondary">Challenge</h2>
+          <p className="text-muted-foreground">
             Description of the main challenge or problem that this project addresses would go here.
           </p>
           
-          <h2>Solution</h2>
-          <p>
+          <h2 className="text-secondary">Solution</h2>
+          <p className="text-muted-foreground">
             Details about the approach and solution implemented would be described in this section.
           </p>
           
-          <h2>Results</h2>
-          <p>
+          <h2 className="text-secondary">Results</h2>
+          <p className="text-muted-foreground">
             The outcomes and results achieved from the project would be highlighted here.
           </p>
           
-          <h2>Technologies Used</h2>
-          <ul>
+          <h2 className="text-secondary">Technologies Used</h2>
+          <ul className="text-muted-foreground">
             {project.tags.map((tag) => (
               <li key={tag}>{tag}</li>
             ))}
@@ -130,7 +130,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           <div className="mt-12 not-prose">
             <Link 
               href="/projects/"
-              className="inline-flex items-center justify-center bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              className="btn-secondary px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center"
             >
               ← Back to Projects
             </Link>

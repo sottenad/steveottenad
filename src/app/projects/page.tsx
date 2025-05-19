@@ -11,10 +11,10 @@ export default function ProjectsPage() {
   return (
     <div className="py-12 md:py-16">
       <div className="max-w-screen-lg mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+        <h1 className="text-3xl font-bold text-secondary mb-8">
           Projects & Case Studies
         </h1>
-        <p className="text-gray-600 dark:text-gray-300 mb-12 max-w-2xl">
+        <p className="text-muted-foreground mb-12 max-w-2xl">
           A collection of my recent work in AI engineering, featuring practical applications, 
           experiments, and case studies in machine learning, natural language processing, and computer vision.
         </p>

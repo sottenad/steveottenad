@@ -2,11 +2,11 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="py-12 border-t border-gray-200 dark:border-gray-800">
+    <footer className="py-12 border-t border-primary/30 bg-muted">
       <div className="max-w-screen-lg mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-4 md:mb-0">
-            <p className="text-sm text-gray-600 dark:text-gray-400">
+            <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} Steve Otten. All rights reserved.
             </p>
           </div>
@@ -15,7 +15,7 @@ export default function Footer() {
               href="https://github.com/steveotten" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              className="text-primary hover:text-accent transition-colors"
             >
               <span className="sr-only">GitHub</span>
               <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -26,7 +26,7 @@ export default function Footer() {
               href="https://linkedin.com/in/steveotten" 
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              className="text-primary hover:text-accent transition-colors"
             >
               <span className="sr-only">LinkedIn</span>
               <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">

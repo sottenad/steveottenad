@@ -7,15 +7,17 @@ import { readMarkdownFile } from "@/lib/markdown";
 import ResponsiveImage from "@/components/ResponsiveImage";
 
 // Generate static paths for all projects
-export function generateStaticParams() {
+export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
 // Generate metadata for each project page
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = projects.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  // Add async to make Next.js happy with params
+  const slug = params.slug;
+  const project = projects.find((p) => p.slug === slug);
   
   if (!project) {
     return {
@@ -29,8 +31,10 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.slug === params.slug);
+export default async function ProjectPage({ params }: { params: { slug: string } }) {
+  // Add async to make Next.js happy, and ensure params is properly awaited
+  const slug = params.slug;
+  const project = projects.find((p) => p.slug === slug);
   
   if (!project) {
     return (
@@ -132,7 +136,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                 a: ({node, ...props}) => <a className="text-primary hover:text-accent underline" {...props} />,
               }}
             >
-              {readMarkdownFile(project.caseStudyPath) || ''}
+              {await readMarkdownFile(project.caseStudyPath) || ''}
             </ReactMarkdown>
           ) : (
             // Render default content for projects without case studies

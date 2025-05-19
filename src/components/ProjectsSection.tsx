@@ -8,7 +8,9 @@ export default function ProjectsSection() {
         <h2 className="text-2xl font-bold text-secondary mb-8">Recent Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <div key={project.id} className="h-full">
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
       </div>

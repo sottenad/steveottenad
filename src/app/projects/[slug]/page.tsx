@@ -1,5 +1,6 @@
 import { projects } from "@/data/projects";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 
 // Generate static paths for all projects
@@ -92,8 +93,21 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </div>
         
         {/* Project Image */}
-        <div className="relative aspect-video w-full bg-primary/10 rounded-xl mb-12 flex items-center justify-center text-primary text-6xl font-medium">
-          {project.title.charAt(0)}
+        <div className="relative aspect-video w-full rounded-xl mb-12 overflow-hidden">
+          {project.image && project.image.endsWith('.png') ? (
+            <Image 
+              src={project.image}
+              alt={project.title}
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-6xl font-medium">
+              {project.title.charAt(0)}
+            </div>
+          )}
         </div>
         
         {/* Project Content - Sample */}

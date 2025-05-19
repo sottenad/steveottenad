@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "Multi-modal RAG to Enable Creative Outfits",
     description: "Building a recommendation system that uses multi-modal RAG to suggest creative outfit combinations based on visual and textual inputs.",
     tags: ["RAG", "Multi-modal", "Computer Vision", "LLM", "Fashion"],
-    image: "/images/multimodal-rag.png",
+    image: "/images/fashion-llm.png",
     slug: "multimodal-rag-creative-outfits"
   },
   {
@@ -43,9 +43,9 @@ export const projects: Project[] = [
 ];
 
 export const aboutMe = {
-  name: "Steve Otten",
-  role: "AI Engineer & Researcher",
-  bio: "I'm an AI engineer specializing in building practical applications with large language models. My work focuses on creating innovative solutions at the intersection of NLP, computer vision, and user experience design.",
+  name: "Steve Ottenad",
+  role: "Solution Architect",
+  bio: "I'm an experienced solution architect specializing in delivering valuable solutions for enterprice customers. ",
   github: "https://github.com/steveotten",
   linkedin: "https://linkedin.com/in/steveotten",
   profileImage: "/images/profile.png"

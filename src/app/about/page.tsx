@@ -3,8 +3,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Steve Otten",
-  description: "About Steve Otten - AI Engineer & Researcher",
+  title: "About | Steve Ottenad",
+  description: "About Steve Ottenad - Solution Architect",
 };
 
 export default function AboutPage() {

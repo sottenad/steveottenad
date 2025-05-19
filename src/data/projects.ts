@@ -34,7 +34,7 @@ export const projects: Project[] = [
   },
   {
     id: "ollama-trivia",
-    title: "Trivia Creation using Ollama",
+    title: "Trivia Creation Using Local LLM",
     description: "Building a local trivia generation system using Ollama to create engaging, factually accurate questions without requiring cloud APIs.",
     tags: ["Ollama", "Local LLM", "Trivia", "Content Generation", "Edge AI"],
     image: "/images/ollama-trivia.png",

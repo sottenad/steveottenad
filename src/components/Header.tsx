@@ -5,7 +5,7 @@ export default function Header() {
     <header className="py-6 border-b border-primary/30">
       <div className="max-w-screen-lg mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-xl font-medium text-secondary">
-          Steve Otten
+          Steve Ottenad
         </Link>
         <nav className="flex gap-6">
           <Link 

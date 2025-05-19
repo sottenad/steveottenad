@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Steve Otten | AI Engineer & Researcher",
-  description: "Portfolio and case studies of AI engineering projects by Steve Otten",
+  title: "Steve Ottenad | Solution Architect",
+  description: "Portfolio and case studies of AI engineering projects by Steve Ottenad",
 };
 
 export default function RootLayout({

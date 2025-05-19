@@ -3,8 +3,8 @@ import ProjectCard from "@/components/ProjectCard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Projects | Steve Otten",
-  description: "AI engineering projects and case studies by Steve Otten",
+  title: "Projects | Steve Ottenad",
+  description: "AI engineering projects and case studies by Steve Ottenad",
 };
 
 export default function ProjectsPage() {

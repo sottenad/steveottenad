@@ -21,7 +21,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   }
   
   return {
-    title: `${project.title} | Steve Otten`,
+    title: `${project.title} | Steve Ottenad`,
     description: project.description,
   };
 }

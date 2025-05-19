@@ -5,13 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { readMarkdownFile } from "@/lib/markdown";
 import ResponsiveImage from "@/components/ResponsiveImage";
-
-// Interface for the parameters passed to the page
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+import { PageParams, getProjectBySlug } from "./utils";
 
 /**
  * Generate the static paths for all projects at build time
@@ -25,12 +19,9 @@ export async function generateStaticParams() {
 /**
  * Generate metadata for SEO
  */
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  // Ensure params.slug is resolved to a string
-  const { slug } = await params;
-  
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
   // Find the project by slug
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProjectBySlug(params);
   
   if (!project) {
     return {
@@ -47,12 +38,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 /**
  * Project detail page
  */
-export default async function ProjectPage({ params }: PageProps) {
-  // Ensure params.slug is resolved to a string
-  const { slug } = await params;
-  
+export default async function ProjectPage({ params }: PageParams) {
   // Find the project by slug
-  const project = projects.find((p) => p.slug === slug);
+  const project = await getProjectBySlug(params);
   
   // Handle not found
   if (!project) {

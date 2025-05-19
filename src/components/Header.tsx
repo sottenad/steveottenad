@@ -1,28 +1,29 @@
 import Link from 'next/link';
+import FadeIn from './FadeIn';
 
 export default function Header() {
   return (
-    <header className="py-6 border-b border-primary/30">
+    <header className="bg-[var(--header)] text-[var(--header-text)] py-4 shadow-md">
       <div className="max-w-screen-lg mx-auto px-4 flex justify-between items-center">
-        <Link href="/" className="text-xl font-medium text-secondary">
+        <Link href="/" className="text-xl font-bold text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors">
           Steve Ottenad
         </Link>
         <nav className="flex gap-6">
           <Link 
             href="/" 
-            className="text-primary hover:text-accent transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
           >
             Home
           </Link>
           <Link 
             href="/projects/" 
-            className="text-primary hover:text-accent transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
           >
             Projects
           </Link>
           <Link 
             href="/about/" 
-            className="text-primary hover:text-accent transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
           >
             About
           </Link>

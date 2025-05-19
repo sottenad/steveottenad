@@ -2,6 +2,9 @@ import { projects } from "@/data/projects";
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { readMarkdownFile } from "@/lib/markdown";
 
 // Generate static paths for all projects
 export function generateStaticParams() {
@@ -110,36 +113,60 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           )}
         </div>
         
-        {/* Project Content - Sample */}
+        {/* Project Content */}
         <div className="prose prose-stone dark:prose-invert max-w-none">
-          <h2 className="text-secondary">Project Overview</h2>
-          <p className="text-muted-foreground">
-            This is a sample project content for {project.title}. In a real implementation, 
-            this would contain the full case study with details about the project objectives, 
-            approach, implementation, results, and learnings.
-          </p>
-          
-          <h2 className="text-secondary">Challenge</h2>
-          <p className="text-muted-foreground">
-            Description of the main challenge or problem that this project addresses would go here.
-          </p>
-          
-          <h2 className="text-secondary">Solution</h2>
-          <p className="text-muted-foreground">
-            Details about the approach and solution implemented would be described in this section.
-          </p>
-          
-          <h2 className="text-secondary">Results</h2>
-          <p className="text-muted-foreground">
-            The outcomes and results achieved from the project would be highlighted here.
-          </p>
-          
-          <h2 className="text-secondary">Technologies Used</h2>
-          <ul className="text-muted-foreground">
-            {project.tags.map((tag) => (
-              <li key={tag}>{tag}</li>
-            ))}
-          </ul>
+          {project.caseStudyPath ? (
+            // Render markdown content for projects with case studies
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h1: ({node, ...props}) => <h1 className="text-3xl font-bold text-secondary mt-8 mb-4" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-secondary mt-8 mb-4" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-secondary mt-6 mb-3" {...props} />,
+                p: ({node, ...props}) => <p className="mb-4 text-muted-foreground" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 text-muted-foreground" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 text-muted-foreground" {...props} />,
+                li: ({node, ...props}) => <li className="mb-1" {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary/30 pl-4 italic my-4" {...props} />,
+                code: ({node, ...props}) => <code className="bg-muted px-1 py-0.5 rounded font-mono text-sm" {...props} />,
+                a: ({node, ...props}) => <a className="text-primary hover:text-accent underline" {...props} />,
+              }}
+            >
+              {readMarkdownFile(project.caseStudyPath) || ''}
+            </ReactMarkdown>
+          ) : (
+            // Render default content for projects without case studies
+            <>
+              <h2 className="text-secondary">Project Overview</h2>
+              <p className="text-muted-foreground">
+                This is a sample project content for {project.title}. In a real implementation, 
+                this would contain the full case study with details about the project objectives, 
+                approach, implementation, results, and learnings.
+              </p>
+              
+              <h2 className="text-secondary">Challenge</h2>
+              <p className="text-muted-foreground">
+                Description of the main challenge or problem that this project addresses would go here.
+              </p>
+              
+              <h2 className="text-secondary">Solution</h2>
+              <p className="text-muted-foreground">
+                Details about the approach and solution implemented would be described in this section.
+              </p>
+              
+              <h2 className="text-secondary">Results</h2>
+              <p className="text-muted-foreground">
+                The outcomes and results achieved from the project would be highlighted here.
+              </p>
+              
+              <h2 className="text-secondary">Technologies Used</h2>
+              <ul className="text-muted-foreground">
+                {project.tags.map((tag) => (
+                  <li key={tag}>{tag}</li>
+                ))}
+              </ul>
+            </>
+          )}
           
           <div className="mt-12 not-prose">
             <Link 

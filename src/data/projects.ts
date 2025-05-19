@@ -5,6 +5,7 @@ export interface Project {
   tags: string[];
   image: string;
   slug: string;
+  caseStudyPath?: string; // Optional path to markdown file containing detailed case study
 }
 
 export const projects: Project[] = [
@@ -18,16 +19,17 @@ export const projects: Project[] = [
   },
   {
     id: "gpt4o-mini",
-    title: "Fine-tuning GPT-4o-mini for Sentiment Classification",
-    description: "Fine-tuning GPT-4o-mini to achieve state-of-the-art performance on complex sentiment classification tasks with minimal training data.",
-    tags: ["GPT-4o-mini", "Fine-tuning", "Sentiment Analysis", "NLP", "Classification"],
+    title: "From Tweets to Insights: 93% Accuracy with Fine-Tuned AI",
+    description: "Achieving remarkable sentiment analysis accuracy for airline customer feedback through strategic fine-tuning of GPT-4o-mini, delivering actionable intelligence with minimal training data.",
+    tags: ["GPT-4o-mini", "Fine-tuning", "Sentiment Analysis", "Social Media", "Airlines", "NLP"],
     image: "/images/gpt4o-mini.png",
-    slug: "fine-tuning-gpt4o-mini-sentiment"
+    slug: "airline-sentiment-analysis",
+    caseStudyPath: "./src/data/airline-sentiment-case-study.md"
   },
   {
     id: "eval-strategies",
-    title: "Eval Strategies 101",
-    description: "A comprehensive guide to designing effective evaluation strategies for language models in production environments.",
+    title: "From Vibes to Flywheel: Rigorous AI Evaluation",
+    description: "A comprehensive guide to designing effective evaluation strategies for language models in production environments, building trust through systematic validation.",
     tags: ["Evaluation", "Benchmarking", "LLM", "ML Ops", "Testing"],
     image: "/images/eval-strategies.png",
     slug: "eval-strategies-101"

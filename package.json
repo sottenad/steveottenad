@@ -6,14 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "optimize-images": "node scripts/optimize-images.js",
+    "build:optimized": "npm run optimize-images && next build"
   },
   "dependencies": {
+    "@next/bundle-analyzer": "^15.3.2",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

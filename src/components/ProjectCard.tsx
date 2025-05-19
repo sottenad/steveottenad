@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
+import ResponsiveImage from './ResponsiveImage';
 
 interface ProjectCardProps {
   project: Project;
@@ -12,7 +12,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       <div className="card hover:border-primary flex flex-col h-full">
         <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
           {project.image && project.image.endsWith('.png') ? (
-            <Image 
+            <ResponsiveImage 
               src={project.image}
               alt={project.title}
               fill

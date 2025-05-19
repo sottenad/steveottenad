@@ -38,7 +38,10 @@ npm run start
 npm run lint
 
 # Export static site (for deployment)
-npm run build && next expor
+npm run build && next export
+
+# Optimize images and then build
+npm run build:optimized
 ```
 
 ### Prerequisites
@@ -128,3 +131,17 @@ The codebase uses path aliases for imports:
 - Layout components for consistent page structure
 - Prefer static rendering over client-side data fetching
 - Minimize JavaScript bundle size by avoiding large dependencies
+
+### Image Optimization
+
+- Uses ResponsiveImage component for optimized image delivery
+- Provides multiple image formats (WebP + original) for browser compatibility
+- Generates multiple sizes for responsive loading
+- Optimization process:
+  1. Place original images in `/public/images/`
+  2. Run `npm run optimize-images` to generate optimized versions
+  3. Optimized images are stored in `/public/images/optimized/`
+  4. ResponsiveImage component automatically selects the appropriate version
+- Available scripts:
+  - `npm run optimize-images`: Only optimizes images
+  - `npm run build:optimized`: Optimizes images then builds the site

@@ -29,10 +29,11 @@ export const projects: Project[] = [
   {
     id: "eval-strategies",
     title: "From Vibes to Flywheel: Rigorous AI Evaluation",
-    description: "A comprehensive guide to designing effective evaluation strategies for language models in production environments, building trust through systematic validation.",
+    description: "A starter guide to understanding why evals matter, when and how to use them, and how to build a roadmap to a mature eval driven development cycle",
     tags: ["Evaluation", "Benchmarking", "LLM", "ML Ops", "Testing"],
     image: "/images/eval-strategies.png",
-    slug: "eval-strategies-101"
+    slug: "eval-strategies",
+    caseStudyPath: "./src/data/eval-strategies.md"
   },
   {
     id: "ollama-trivia",

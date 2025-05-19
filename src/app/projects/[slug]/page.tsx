@@ -1,10 +1,10 @@
 import { projects } from "@/data/projects";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { readMarkdownFile } from "@/lib/markdown";
+import ResponsiveImage from "@/components/ResponsiveImage";
 
 // Generate static paths for all projects
 export function generateStaticParams() {
@@ -98,7 +98,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         {/* Project Image */}
         <div className="relative aspect-video w-full rounded-xl mb-12 overflow-hidden">
           {project.image && project.image.endsWith('.png') ? (
-            <Image 
+            <ResponsiveImage 
               src={project.image}
               alt={project.title}
               fill

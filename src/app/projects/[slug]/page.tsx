@@ -5,18 +5,34 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { readMarkdownFile } from "@/lib/markdown";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import FadeIn from "@/components/FadeIn";
+import HoverMotion from "@/components/HoverMotion";
 
-// Generate static paths for all projects
+// Interface for the parameters passed to the page
+interface PageProps {
+  params: {
+    slug: string | Promise<string>;
+  };
+}
+
+/**
+ * Generate the static paths for all projects at build time
+ */
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-// Generate metadata for each project page
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  // Add async to make Next.js happy with params
-  const slug = params.slug;
+/**
+ * Generate metadata for SEO
+ */
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  // Ensure params.slug is resolved to a string
+  const { slug } = await params
+  
+  
+  // Find the project by slug
   const project = projects.find((p) => p.slug === slug);
   
   if (!project) {
@@ -31,11 +47,17 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function ProjectPage({ params }: { params: { slug: string } }) {
-  // Add async to make Next.js happy, and ensure params is properly awaited
-  const slug = params.slug;
+/**
+ * Project detail page
+ */
+export default async function ProjectPage({ params }: PageProps) {
+  // Ensure params.slug is resolved to a string
+  const { slug } = await params
+  
+  // Find the project by slug
   const project = projects.find((p) => p.slug === slug);
   
+  // Handle not found
   if (!project) {
     return (
       <div className="py-20 text-center">
@@ -55,131 +77,157 @@ export default async function ProjectPage({ params }: { params: { slug: string }
     );
   }
   
+  // Load markdown content if available
+  let markdownContent = null;
+  if (project && project.caseStudyPath) {
+    try {
+      markdownContent = await readMarkdownFile(project.caseStudyPath);
+    } catch (error) {
+      console.error(`Error loading case study for ${project.title}:`, error);
+    }
+  }
+  
   return (
     <div className="py-12 md:py-16">
       <div className="max-w-screen-lg mx-auto px-4">
         {/* Breadcrumb */}
-        <nav className="mb-8">
-          <ol className="flex items-center text-sm text-muted-foreground">
-            <li>
-              <Link href="/" className="hover:text-accent transition-colors">
-                Home
-              </Link>
-            </li>
-            <li className="mx-2">/</li>
-            <li>
-              <Link href="/projects/" className="hover:text-accent transition-colors">
-                Projects
-              </Link>
-            </li>
-            <li className="mx-2">/</li>
-            <li className="text-secondary font-medium">
-              {project.title}
-            </li>
-          </ol>
-        </nav>
+        <FadeIn direction="down" duration={0.4}>
+          <nav className="mb-8">
+            <ol className="flex items-center text-sm text-muted-foreground">
+              <li>
+                <Link href="/" className="hover:text-accent transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li className="mx-2">/</li>
+              <li>
+                <Link href="/projects/" className="hover:text-accent transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li className="mx-2">/</li>
+              <li className="text-secondary font-medium">
+                {project.title}
+              </li>
+            </ol>
+          </nav>
+        </FadeIn>
         
         {/* Project Header */}
-        <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
-            {project.title}
-          </h1>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <span
-                key={tag}
-                className="tag"
-              >
-                {tag}
-              </span>
-            ))}
+        <FadeIn direction="up" duration={0.6} delay={0.1}>
+          <div className="mb-12">
+            <h1 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
+              {project.title}
+            </h1>
+            <div className="flex flex-wrap gap-2 mb-6">
+              {project.tags.map((tag, index) => (
+                <FadeIn key={tag} direction="up" delay={0.2 + (index * 0.05)} duration={0.4}>
+                  <span className="tag">
+                    {tag}
+                  </span>
+                </FadeIn>
+              ))}
+            </div>
+            <p className="text-xl text-primary">
+              {project.description}
+            </p>
           </div>
-          <p className="text-xl text-primary">
-            {project.description}
-          </p>
-        </div>
+        </FadeIn>
         
         {/* Project Image */}
-        <div className="relative aspect-video w-full rounded-xl mb-12 overflow-hidden">
-          {project.image && project.image.endsWith('.png') ? (
-            <ResponsiveImage 
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="100vw"
-              className="object-cover"
-              priority
-            />
-          ) : (
-            <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-6xl font-medium">
-              {project.title.charAt(0)}
-            </div>
-          )}
-        </div>
+        <FadeIn direction="up" duration={0.7} delay={0.3}>
+          <div className="relative aspect-video w-full rounded-xl mb-12 overflow-hidden">
+            {project.image && project.image.endsWith('.png') ? (
+              <ResponsiveImage 
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="100vw"
+                className="object-cover"
+                priority
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-primary/10 text-primary text-6xl font-medium">
+                {project.title.charAt(0)}
+              </div>
+            )}
+          </div>
+        </FadeIn>
         
         {/* Project Content */}
-        <div className="prose prose-stone dark:prose-invert max-w-none">
-          {project.caseStudyPath ? (
+        <div className="max-w-none">
+          {markdownContent && typeof markdownContent === 'string' && markdownContent.trim() !== '' ? (
             // Render markdown content for projects with case studies
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-              components={{
-                h1: ({node, ...props}) => <h1 className="text-3xl font-bold text-secondary mt-8 mb-4" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-2xl font-bold text-secondary mt-8 mb-4" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-xl font-semibold text-secondary mt-6 mb-3" {...props} />,
-                p: ({node, ...props}) => <p className="mb-4 text-muted-foreground" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc pl-5 mb-4 text-muted-foreground" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal pl-5 mb-4 text-muted-foreground" {...props} />,
-                li: ({node, ...props}) => <li className="mb-1" {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className="border-l-4 border-primary/30 pl-4 italic my-4" {...props} />,
-                code: ({node, ...props}) => <code className="bg-muted px-1 py-0.5 rounded font-mono text-sm" {...props} />,
-                a: ({node, ...props}) => <a className="text-primary hover:text-accent underline" {...props} />,
-              }}
-            >
-              {await readMarkdownFile(project.caseStudyPath) || ''}
-            </ReactMarkdown>
+            <FadeIn direction="up" duration={0.8} delay={0.5}>
+              <div className="case-study-content">
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    // Let custom CSS handle the styling through our case-study-content class
+                    h1: ({node, ...props}) => <h1 {...props} />,
+                    h2: ({node, ...props}) => <h2 {...props} />,
+                    h3: ({node, ...props}) => <h3 {...props} />,
+                    p: ({node, ...props}) => <p {...props} />,
+                    ul: ({node, ...props}) => <ul {...props} />,
+                    ol: ({node, ...props}) => <ol {...props} />,
+                    li: ({node, ...props}) => <li {...props} />,
+                    blockquote: ({node, ...props}) => <blockquote {...props} />,
+                    code: ({node, ...props}) => <code {...props} />,
+                    a: ({node, ...props}) => <a {...props} />,
+                  }}
+                >
+                  {markdownContent}
+                </ReactMarkdown>
+              </div>
+            </FadeIn>
           ) : (
             // Render default content for projects without case studies
-            <>
-              <h2 className="text-secondary">Project Overview</h2>
-              <p className="text-muted-foreground">
-                This is a sample project content for {project.title}. In a real implementation, 
-                this would contain the full case study with details about the project objectives, 
-                approach, implementation, results, and learnings.
-              </p>
-              
-              <h2 className="text-secondary">Challenge</h2>
-              <p className="text-muted-foreground">
-                Description of the main challenge or problem that this project addresses would go here.
-              </p>
-              
-              <h2 className="text-secondary">Solution</h2>
-              <p className="text-muted-foreground">
-                Details about the approach and solution implemented would be described in this section.
-              </p>
-              
-              <h2 className="text-secondary">Results</h2>
-              <p className="text-muted-foreground">
-                The outcomes and results achieved from the project would be highlighted here.
-              </p>
-              
-              <h2 className="text-secondary">Technologies Used</h2>
-              <ul className="text-muted-foreground">
-                {project.tags.map((tag) => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            </>
+            <FadeIn direction="up" duration={0.8} delay={0.5}>
+              <div className="case-study-content">
+                <h2>Project Overview</h2>
+                <p>
+                  This is a sample project content for {project.title}. In a real implementation, 
+                  this would contain the full case study with details about the project objectives, 
+                  approach, implementation, results, and learnings.
+                </p>
+                
+                <h2>Challenge</h2>
+                <p>
+                  Description of the main challenge or problem that this project addresses would go here.
+                </p>
+                
+                <h2>Solution</h2>
+                <p>
+                  Details about the approach and solution implemented would be described in this section.
+                </p>
+                
+                <h2>Results</h2>
+                <p>
+                  The outcomes and results achieved from the project would be highlighted here.
+                </p>
+                
+                <h2>Technologies Used</h2>
+                <ul>
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
           )}
           
-          <div className="mt-12 not-prose">
-            <Link 
-              href="/projects/"
-              className="btn-secondary px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center"
-            >
-              ← Back to Projects
-            </Link>
-          </div>
+          <FadeIn direction="up" duration={0.6} delay={0.8}>
+            <div className="mt-12 flex justify-center">
+              <HoverMotion scale={1.05} lift={2}>
+                <Link 
+                  href="/projects/"
+                  className="btn-secondary px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center"
+                >
+                  ← Back to Projects
+                </Link>
+              </HoverMotion>
+            </div>
+          </FadeIn>
         </div>
       </div>
     </div>

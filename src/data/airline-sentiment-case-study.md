@@ -7,70 +7,67 @@ This case study documents the development and implementation of an advanced sent
 ## Client Challenge
 
 ### Background
-The client, an airline industry analytics provider, needed to monitor and analyze customer sentiment across multiple airlines on social media platforms. Their existing methods were:
+An airline industry analytics provider needed to efficiently monitor customer sentiment across multiple airlines on social media, but their manual review process couldn't scale with increasing data volume and delivered insights too slowly to be actionable.
+
+Their existing methods were:
 - Labor-intensive, requiring manual review
 - Inconsistent in classification
 - Unable to scale with increasing data volume
 - Too slow to provide actionable real-time insights
 
 ### Key Requirements
-- Accurately identify mentioned airlines in tweets
-- Correctly classify sentiment as positive, negative, or neutral
-- Provide structured output for downstream applications
-- Deliver consistent results with high accuracy
-- Achieve results with minimal training data
+To address these challenges, we identified these critical requirements for a successful solution:
 
+- **Accurately identify mentioned airlines in tweets** - Airlines are often referenced in various ways (abbreviations, hashtags, misspellings), requiring robust entity extraction to capture all relevant mentions.
+
+- **Correctly classify sentiment as positive, negative, or neutral** - Understanding sentiment patterns would enable airlines to identify service issues and track customer satisfaction trends over time.
+
+- **Provide structured output for downstream applications** - Consistent, well-formatted data was essential for seamless integration with existing dashboards and alert systems.
+
+- **Deliver consistent results with high accuracy** - Reliability in classification was paramount to build confidence in the automated analysis and support data-driven decision making.
+
+- **Achieve results with minimal training data** - Limited availability of labeled examples required an approach that could maximize learning from a small dataset due to short timelines and lack of dedicated staff for this initial phase.
 ## Solution Approach
+
+We partnered with the client to implement an iterative, data-driven solution that evolved through continuous refinement and collaborative problem-solving.
 
 ### Phase 1: Discovery & Planning
 
+Our initial engagement revealed that previous attempts had stalled because they tried to solve everything at once rather than building incrementally toward success.
+
 **Initial Assessment**
-- Conducted stakeholder interviews to understand business objectives
-- Reviewed existing analytics workflow and identified bottlenecks
-- Assessed available data sources and quality
-- Defined success metrics (accuracy thresholds, processing time, etc.)
+Working sessions with the client's analytics team uncovered specific pain points in their existing workflow – particularly how inconsistent airline identification led to flawed downstream analysis. These insights shaped our metrics for success: improved accuracy, reduced processing time, and consistent structured outputs.
 
 **Data Strategy**
-- Identified key data points needed for analysis
-- Developed data collection methodology
-- Created data cleaning and preprocessing protocols
-- Established baseline measurements using traditional NLP approaches
+Rather than relying on perfect data, we collaborated to identify a smaller, high-quality dataset of representative tweets. The client's domain expertise helped prioritize examples that captured real-world variations in how customers reference airlines – from official handles to creative abbreviations.
 
 **Solution Architecture**
-- Designed high-level system architecture
-- Selected appropriate model types for testing
-- Defined API requirements and integration points
-- Established monitoring and evaluation frameworks
+We designed a flexible architecture that would allow for rapid experimentation and iteration, enabling us to test different approaches without disrupting the client's ongoing operations. This foundation supported the evolutionary approach that would ultimately deliver success.
 
 ### Phase 2: Development & Implementation
 
+The client's willingness to embrace an iterative process proved invaluable as we moved through progressive improvement cycles rather than pursuing a single "perfect" solution.
+
 **Data Preparation**
-- Collected and curated training dataset of airline-related tweets
-- Labeled data for airline entities and sentiment
-- Split data into training and validation sets
-- Preprocessed text data for model compatibility
+The client's team worked alongside ours to label an initial batch of tweets, then reviewed model outputs to identify misclassifications. These error patterns informed targeted expansion of the training data to address specific weaknesses, creating a virtuous improvement cycle.
 
 **Model Selection & Training**
-- Tested baseline models without fine-tuning (78% accuracy)
-- Implemented structured outputs with schema definition
-- Developed prompt engineering strategy
-  - Started with simple prompts
-  - Incrementally increased complexity
-  - Avoided verbosity that decreased performance
-  - Incorporated representative examples
-- Fine-tuned selected model on client-specific data
-  - Achieved 15% improvement over baseline (93% accuracy)
+Each iteration revealed new insights: early tests showed promising entity extraction but inconsistent sentiment analysis. When basic prompt engineering improved results to 78% accuracy, the client recognized the potential and authorized fine-tuning. This critical decision yielded the breakthrough 15% improvement that transformed the project's trajectory.
 
 **Technical Implementation**
-- Integrated with data sources for tweet ingestion
-- Established processing pipeline:
-  1. Fine-tuned model (based on GPT-4o-mini)
-  2. Optimized prompts
-  3. Sentiment analysis
-  4. Structured output generation
-  5. Application integration
-- Implemented evaluation framework using OpenAI Evals
-- Created monitoring dashboard for ongoing performance assessment
+Weekly review sessions kept the focus on practical business value rather than technical perfection. Early integration with the client's dashboard allowed stakeholders to see improving results in real-time, building confidence and securing ongoing support for the initiative.
+
+### Phase 3: Testing & Optimization
+
+The collaborative approach continued through validation and refinement, with each cycle delivering measurable improvements.
+
+**Validation**
+Test results revealed interesting patterns: the model excelled at identifying negative sentiment (often clearer in customer complaints) but struggled more with distinguishing neutral from mildly positive tweets. The client helped prioritize these improvements based on business impact rather than pursuing perfect scores across all categories.
+
+**Performance Optimization**
+The client actively participated in error analysis, contributing domain expertise to identify airline-specific terminology that influenced sentiment perception. This collaboration led to targeted prompt refinements that further improved accuracy while maintaining processing efficiency.
+
+This iterative partnership transformed what could have been a standard implementation into a continuously evolving solution that genuinely addressed the client's specific challenges while building internal capability for ongoing improvement.
 
 ### Phase 3: Testing & Optimization
 

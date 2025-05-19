@@ -1,5 +1,7 @@
 # trivia-engine.com: Transforming Jeopardy! with AI
 
+(Visit Site)[https://trivia-engine.com]
+
 ## Business Overview
 
 **What It Is:**  
@@ -10,7 +12,7 @@ As a Jeopardy! enthusiast, I created the original jService API to share this ric
 
 ## Key Challenges & Solutions
 
-### Challenge 1: Quality Distractors at Scale
+### Challenge 1: Quality Answers at Scale
 **Problem:** Creating plausible but incorrect answer options for 200,000+ questions would require thousands of hours of expert work.
 
 **Solution:** Developed a specialized AI transformation engine using a local LLM (qwq:32b) through Ollama. This approach allowed for batch processing with carefully engineered prompts that generate contextually appropriate wrong answers while maintaining the original difficulty level.
@@ -20,10 +22,10 @@ As a Jeopardy! enthusiast, I created the original jService API to share this ric
 
 **Solution:** Implemented a local model deployment that eliminated per-token costs, enabling full database transformation with minimal ongoing expenses. This approach also reduced latency and eliminated external API dependencies.
 
-### Challenge 3: Developer Accessibility
-**Problem:** Developers needed flexible, reliable access with customization options.
+### Challenge 3: Maintaining Educational Value
+**Problem:** Multiple-choice questions can become too easy if wrong answers are obviously incorrect, or too confusing if they're misleadingly similar to the right answer. Maintaining the perfect difficulty balance that makes Jeopardy! engaging was essential.
 
-**Solution:** Built a comprehensive API service with authentication, rate limiting, and diverse endpoints that allow random question retrieval, category filtering, and search functionality. Each endpoint follows consistent RESTful design principles with thorough documentation.
+**Solution:** Developed sophisticated prompt engineering that analyzes the original clue's dollar value and category context to generate appropriate distractors. The system creates wrong answers that are thematically related but unambiguously incorrect, preserving the educational challenge that makes the content valuable. Each transformation undergoes validation to ensure it maintains appropriate difficulty without becoming misleading.
 
 ## Technical Implementation
 

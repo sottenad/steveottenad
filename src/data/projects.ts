@@ -41,7 +41,8 @@ export const projects: Project[] = [
     description: "Building a local trivia generation system using Ollama to create engaging, factually accurate questions without requiring cloud APIs.",
     tags: ["Ollama", "Local LLM", "Trivia", "Content Generation", "Edge AI"],
     image: "/images/ollama-trivia.png",
-    slug: "trivia-creation-ollama"
+    slug: "trivia-creation-ollama",
+    caseStudyPath: "./src/data/ollama-trivia.md"
   }
 ];
 

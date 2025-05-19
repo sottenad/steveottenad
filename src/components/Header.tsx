@@ -11,19 +11,19 @@ export default function Header() {
         <nav className="flex gap-6">
           <Link 
             href="/" 
-            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] font-medium transition-colors"
           >
             Home
           </Link>
           <Link 
             href="/projects/" 
-            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] font-medium transition-colors"
           >
             Projects
           </Link>
           <Link 
             href="/about/" 
-            className="text-[var(--header-text)] hover:text-[var(--light-brown)] transition-colors"
+            className="text-[var(--header-text)] hover:text-[var(--light-brown)] font-medium transition-colors"
           >
             About
           </Link>

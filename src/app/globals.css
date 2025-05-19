@@ -7,7 +7,7 @@
   --dark-green: #283618;
   --light-brown: #dda15e;
   --dark-brown: #bc6c25;
-  --deep-plum: #3d1e2b; /* New complementary dark color */
+  --dark-gray-green: #242920; /* Dark gray-green color */
   
   /* Application colors */
   --background: var(--cream);
@@ -24,7 +24,7 @@
   --border: var(--light-green);
   --input: var(--light-green);
   --ring: var(--light-brown);
-  --header: var(--deep-plum); /* New header background color */
+  --header: var(--dark-gray-green); /* Header background color */
   --header-text: var(--cream); /* Header text color for readability */
 }
 
@@ -43,7 +43,7 @@
     --muted-foreground: #d3ceb8;
     --card: #222a19;
     --card-foreground: var(--cream);
-    --header: #2b1520; /* Darker version of deep-plum for dark mode */
+    --header: #1c211a; /* Slightly darker version of dark-gray-green for dark mode */
     --header-text: #fef8e3; /* Slightly brighter cream for better contrast */
   }
 }

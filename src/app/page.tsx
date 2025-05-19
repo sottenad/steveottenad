@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="hero-gradient py-20 md:py-32">
+      <section className="hero-gradient py-20 md:py-28">
         <div className="max-w-screen-lg mx-auto px-4">
           <div className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
@@ -31,11 +31,11 @@ export default function Home() {
         </div>
       </section>
       
-      {/* About Section */}
-      <AboutSection />
-      
       {/* Projects Section */}
       <ProjectsSection />
+      
+      {/* About Section */}
+      <AboutSection />
     </>
   );
 }

@@ -3,8 +3,9 @@ import { aboutMe } from '@/data/projects';
 
 export default function AboutSection() {
   return (
-    <section className="py-12 md:py-16">
+    <section className="py-12 md:py-16 bg-gray-50 dark:bg-gray-900/50">
       <div className="max-w-screen-lg mx-auto px-4">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">About Me</h2>
         <div className="flex flex-col md:flex-row items-start gap-8">
           <div className="w-full md:w-1/3">
             <div className="aspect-square w-48 h-48 rounded-full bg-gray-200 dark:bg-gray-800 mx-auto md:mx-0 flex items-center justify-center text-gray-400 dark:text-gray-600 text-4xl font-medium">
@@ -12,7 +13,7 @@ export default function AboutSection() {
             </div>
           </div>
           <div className="w-full md:w-2/3">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">{aboutMe.name}</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{aboutMe.name}</h2>
             <p className="mt-1 text-lg text-blue-600 dark:text-blue-400">{aboutMe.role}</p>
             <p className="mt-4 text-gray-600 dark:text-gray-300">{aboutMe.bio}</p>
             <div className="mt-6 flex gap-4">

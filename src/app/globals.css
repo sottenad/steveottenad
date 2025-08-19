@@ -1,31 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  /* Custom color palette */
-  --cream: #fefae0;
-  --light-green: #606c38;
-  --dark-green: #283618;
-  --light-brown: #dda15e;
-  --dark-brown: #bc6c25;
-  --dark-gray-green: #242920; /* Dark gray-green color */
+  /* Custom color palette - Modern purple theme */
+  --light-bg: #fafafa;
+  --white: #ffffff;
+  --purple-primary: #7c3aed;
+  --purple-secondary: #a855f7;
+  --purple-light: #e9d5ff;
+  --purple-muted: #f3e8ff;
+  --gray-dark: #1f2937;
+  --gray-medium: #6b7280;
+  --gray-light: #e5e7eb;
+  --gray-ultra-light: #f9fafb;
   
   /* Application colors */
-  --background: var(--cream);
-  --foreground: var(--dark-green);
-  --primary: var(--light-green);
-  --primary-foreground: var(--cream);
-  --secondary: var(--dark-green);
-  --secondary-foreground: var(--cream);
-  --accent: var(--dark-brown);
-  --muted: #e9e7d0;
-  --muted-foreground: #556231;
-  --card: var(--cream);
-  --card-foreground: var(--dark-green);
-  --border: var(--light-green);
-  --input: var(--light-green);
-  --ring: var(--light-brown);
-  --header: var(--dark-gray-green); /* Header background color */
-  --header-text: var(--cream); /* Header text color for readability */
+  --background: var(--light-bg);
+  --foreground: var(--gray-dark);
+  --primary: var(--purple-primary);
+  --primary-foreground: var(--white);
+  --secondary: var(--purple-light);
+  --secondary-foreground: var(--gray-dark);
+  --accent: var(--purple-secondary);
+  --muted: var(--purple-muted);
+  --muted-foreground: var(--gray-medium);
+  --card: var(--white);
+  --card-foreground: var(--gray-dark);
+  --border: var(--gray-light);
+  --input: var(--gray-light);
+  --ring: var(--purple-light);
+  --header: var(--white); /* Clean white header */
+  --header-text: var(--gray-dark); /* Dark text for contrast */
 }
 
 @theme inline {
@@ -37,14 +41,22 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a1f13;
-    --foreground: var(--cream);
-    --muted: #2a331f;
-    --muted-foreground: #d3ceb8;
-    --card: #222a19;
-    --card-foreground: var(--cream);
-    --header: #1c211a; /* Slightly darker version of dark-gray-green for dark mode */
-    --header-text: #fef8e3; /* Slightly brighter cream for better contrast */
+    --background: #0f0f15;
+    --foreground: #f3f4f6;
+    --primary: #9333ea;
+    --primary-foreground: var(--white);
+    --secondary: #581c87;
+    --secondary-foreground: #f3f4f6;
+    --accent: #c084fc;
+    --muted: #1e1b2e;
+    --muted-foreground: #a5a5b5;
+    --card: #1a1825;
+    --card-foreground: #f3f4f6;
+    --border: #2d2b3d;
+    --input: #2d2b3d;
+    --ring: #7c3aed;
+    --header: #1a1825; /* Deep purple-tinted dark header */
+    --header-text: #f3f4f6; /* Light text for contrast */
   }
 }
 
@@ -57,8 +69,8 @@ body {
 .hero-gradient {
   background: linear-gradient(
     135deg,
-    rgba(96, 108, 56, 0.1) 0%,
-    rgba(40, 54, 24, 0.15) 100%
+    rgba(124, 58, 237, 0.05) 0%,
+    rgba(168, 85, 247, 0.08) 100%
   );
 }
 
@@ -66,33 +78,38 @@ body {
   .hero-gradient {
     background: linear-gradient(
       135deg,
-      rgba(96, 108, 56, 0.3) 0%,
-      rgba(40, 54, 24, 0.3) 100%
+      rgba(124, 58, 237, 0.15) 0%,
+      rgba(168, 85, 247, 0.2) 100%
     );
   }
 }
 
 /* Custom button styles */
 .btn-primary {
-  background-color: var(--primary);
+  background: linear-gradient(135deg, var(--purple-primary) 0%, var(--purple-secondary) 100%);
   color: var(--primary-foreground);
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.2), 0 2px 4px -1px rgba(124, 58, 237, 0.06);
 }
 
 .btn-primary:hover {
-  background-color: var(--secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.3), 0 4px 6px -2px rgba(124, 58, 237, 0.08);
+  filter: brightness(1.1);
 }
 
 .btn-secondary {
   background-color: transparent;
-  color: var(--primary);
-  border: 1px solid var(--primary);
-  transition: all 0.2s ease-in-out;
+  color: var(--purple-primary);
+  border: 2px solid var(--purple-primary);
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background-color: var(--primary);
-  color: var(--primary-foreground);
+  background-color: var(--purple-primary);
+  color: var(--white);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.2);
 }
 
 /* Card styles */
@@ -107,7 +124,7 @@ body {
 
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(40, 54, 24, 0.1), 0 4px 6px -2px rgba(40, 54, 24, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(124, 58, 237, 0.1), 0 4px 6px -2px rgba(124, 58, 237, 0.05);
 }
 
 /* Tag styles */
@@ -123,10 +140,10 @@ body {
 /* Case study content styles */
 .case-study-content {
   background-color: white;
-  color: var(--dark-green);
+  color: var(--gray-dark);
   padding: 2rem;
   border-radius: 0.75rem;
-  box-shadow: 0 4px 6px -1px rgba(40, 54, 24, 0.1), 0 2px 4px -1px rgba(40, 54, 24, 0.06);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.7;
@@ -134,7 +151,7 @@ body {
 
 .case-study-content h1 {
   font-size: 2rem;
-  color: var(--dark-green);
+  color: var(--gray-dark);
   margin-top: 2.5rem;
   margin-bottom: 1rem;
   font-weight: 700;
@@ -143,7 +160,7 @@ body {
 
 .case-study-content h2 {
   font-size: 1.75rem;
-  color: var(--dark-green);
+  color: var(--gray-dark);
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 600;
@@ -152,7 +169,7 @@ body {
 
 .case-study-content h3 {
   font-size: 1.5rem;
-  color: var(--light-green);
+  color: var(--purple-primary);
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-weight: 600;
@@ -166,7 +183,7 @@ body {
 
 .case-study-content strong {
   font-weight: 600;
-  color: var(--dark-green);
+  color: var(--gray-dark);
 }
 
 .case-study-content ul {
@@ -187,18 +204,18 @@ body {
 }
 
 .case-study-content a {
-  color: var(--light-green);
+  color: var(--purple-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: color 0.2s ease;
 }
 
 .case-study-content a:hover {
-  color: var(--dark-brown);
+  color: var(--purple-secondary);
 }
 
 .case-study-content blockquote {
-  border-left: 4px solid var(--light-brown);
+  border-left: 4px solid var(--purple-light);
   padding-left: 1rem;
   font-style: italic;
   color: #666;
@@ -206,16 +223,16 @@ body {
 }
 
 .case-study-content code {
-  background-color: #f3f3e8;
+  background-color: var(--purple-muted);
   padding: 0.2rem 0.4rem;
   border-radius: 0.25rem;
   font-family: var(--font-geist-mono), monospace;
   font-size: 0.9rem;
-  color: var(--dark-green);
+  color: var(--purple-primary);
 }
 
 .case-study-content pre {
-  background-color: #f3f3e8;
+  background-color: var(--purple-muted);
   padding: 1rem;
   border-radius: 0.5rem;
   overflow-x: auto;
@@ -226,5 +243,5 @@ body {
   background-color: transparent;
   padding: 0;
   font-size: 0.9rem;
-  color: var(--dark-green);
+  color: var(--purple-primary);
 }

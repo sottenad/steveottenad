@@ -62,15 +62,14 @@ export default function AboutPage() {
                 {aboutMe.bio}
               </p>
               <p className="mb-6 text-muted-foreground">
-                I specialize in developing practical applications of large language models, 
-                with a focus on creating innovative solutions at the intersection of NLP, 
-                computer vision, and user experience design.
+                I focus on building real-world applications with large language models, 
+                especially where they connect with everyday workflows and user needs.
               </p>
               <p className="text-muted-foreground">
-                My recent work has centered on multimodal applications, fine-tuning models for 
-                specific domains, and developing rigorous evaluation frameworks for AI systems. 
-                I&apos;m particularly interested in building tools that enable creative applications 
-                of AI technology.
+                Lately, I’ve been working on projects like multimodal RAG for image matching, 
+                contract analysis tools, and agenda recommenders that use AI to make sense of 
+                large, messy datasets. I enjoy exploring how AI and thoughtful 
+                design can come together to create useful tools people want to use.
               </p>
               
               <h3 className="text-xl font-semibold mt-12 mb-4 text-secondary">Skills & Expertise</h3>

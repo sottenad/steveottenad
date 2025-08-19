@@ -4,144 +4,78 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static portfolio website built with Next.js 15, bootstrapped with `create-next-app`. The site showcases AI case studies and projects with a clean, beautiful design and requires no database.
-
-### Purpose
-- Showcase 4-6 recent AI projects with in-depth case studies
-- Include an About Me section
-- Provide links to GitHub and LinkedIn profiles
-- Primary focus on highlighting projects and their details
-- Generate a completely static site that can be deployed anywhere
+A static portfolio website built with Next.js 15 showcasing AI case studies and projects. The site is designed to be completely static, requiring no database or server-side functionality.
 
 ### Tech Stack
-- React 19
-- TypeScript
-- TailwindCSS 4
-- ESLint 9
-- Next.js static site generation (SSG)
+- **Next.js 15** with App Router and static export (`output: 'export'`)
+- **React 19** with TypeScript
+- **Tailwind CSS 4** via `@tailwindcss/postcss`
+- **ESLint 9** for code quality
+- **Sharp** for image optimization
+- **React Markdown** with GitHub Flavored Markdown support
 
 ## Commands
 
-### Development
-
 ```bash
-# Start the development server
-npm run dev
+# Development
+npm run dev                # Start dev server (http://localhost:3000)
+npm run lint              # Run ESLint
 
-# Build for production (generates static HTML/CSS/JS)
-npm run build
+# Building
+npm run build             # Build static site (generates /out directory)
+npm run start             # Test production build locally
+npm run build:optimized   # Optimize images, then build
 
-# Start the production server (for testing the build)
-npm run start
-
-# Lint the codebase
-npm run lint
-
-# Export static site (for deployment)
-npm run build && next export
-
-# Optimize images and then build
-npm run build:optimized
+# Image Optimization
+npm run optimize-images   # Generate responsive WebP images
 ```
-
-### Prerequisites
-
-- Node.js 20+ installed
-- Configure `next.config.ts` with `output: 'export'` to enable static site generation:
-  ```typescript
-  // next.config.ts
-  import type { NextConfig } from "next";
-
-  const nextConfig: NextConfig = {
-    output: 'export',
-    images: {
-      unoptimized: true, // Required for static export
-    },
-    // Ensure trailing slashes for proper static file linking
-    trailingSlash: true,
-  };
-
-  export default nextConfig;
-  ```
-- Ensure all dynamic routes use `generateStaticParams` to pre-render paths at build time
-- Avoid any components or features that require server-side functionality
 
 ## Architecture
 
-### App Structure
+### File Structure
+- `src/app/` - Next.js App Router pages and layouts
+  - `page.tsx` - Homepage
+  - `projects/[slug]/page.tsx` - Dynamic project pages
+  - `about/page.tsx` - About page
+  - `globals.css` - Global styles and CSS variables
+- `src/components/` - Reusable React components
+  - `ResponsiveImage.tsx` - Handles optimized image loading
+- `src/data/` - Static content
+  - `projects.ts` - Project metadata and descriptions
+  - `*.md` - Markdown case studies
+- `src/lib/` - Utility functions
+- `scripts/optimize-images.js` - Image optimization script
+- `public/images/` - Original images
+- `public/images/optimized/` - Generated responsive images
 
-This project follows Next.js 15's App Router pattern:
+### Key Implementation Details
 
-- `src/app/`: Contains the main application code
-  - `layout.tsx`: Root layout component defining the HTML structure and app-wide providers
-  - `page.tsx`: Main page component for the root route (homepage)
-  - `globals.css`: Global styles including Tailwind imports and theme variables
-  - `projects/`: Directory for project case studies
-    - `[slug]/page.tsx`: Dynamic route for individual project pages
-  - `about/page.tsx`: About Me page
+1. **Static Site Generation**
+   - Configured via `next.config.ts` with `output: 'export'`
+   - All dynamic routes use `generateStaticParams()` for pre-rendering
+   - Images unoptimized at build time (`images.unoptimized: true`)
+   - Trailing slashes enabled for proper static file serving
 
-### Key Features
+2. **Image Optimization Workflow**
+   - Place originals in `/public/images/`
+   - Run `npm run optimize-images` to generate:
+     - WebP versions at 4 sizes (xs: 320px, sm: 640px, md: 960px, lg: 1280px)
+     - Fallback original format at medium size
+   - ResponsiveImage component automatically selects appropriate version
 
-- Completely static site with no database dependency
-- Simple component architecture favoring function over complexity
-- Responsive, modern design optimized for all devices
-- Project showcase with featured images and descriptions
-- Pre-rendered project pages with detailed case studies
-- About Me section with professional background and skills
-- Social media and professional profile links
-- Light/dark mode support
-- Uses Geist fonts from Next.js font system
-- Uses Tailwind CSS for styling
-- Follows the App Router pattern for routing
-- TypeScript for type safety
+3. **Project Data Structure**
+   - Projects defined in `src/data/projects.ts` with:
+     - slug (URL parameter)
+     - title, description, technologies
+     - image paths (relative to `/images/`)
+     - GitHub/demo links
+   - Case studies stored as separate markdown files
 
-### Import Aliases
+4. **Styling Approach**
+   - Tailwind CSS with custom CSS variables in `globals.css`
+   - Light/dark mode support via CSS variables
+   - Geist font from Next.js font system
+   - Mobile-first responsive design
 
-The codebase uses path aliases for imports:
+### Import Alias
 - `@/*` maps to `./src/*`
-
-### Styling
-
-- Uses Tailwind CSS through `@tailwindcss/postcss`
-- Defines light/dark mode variables in `globals.css`
-- Uses CSS variables for theme customization
-- Clean, minimal aesthetic with focus on readability and project presentation
-- Consistent spacing and typography for professional appearance
-
-### Data Structure
-
-- Project data stored as static TypeScript objects (in `/src/data/projects.ts`)
-- No external API calls or database queries
-- All content pre-rendered at build time
-- Each project includes:
-  - Title
-  - Description
-  - Slug (for URL routing)
-  - Featured image (stored in `/public/images/`)
-  - Technologies used
-  - Case study content (can include markdown)
-  - External links (GitHub, live demo, etc.)
-- About data includes professional information and skills
-
-### Component Architecture
-
-- Simple, functional components with minimal state management
-- Component files organized by feature rather than type
-- Reusable UI components in `/src/components/`
-- Layout components for consistent page structure
-- Prefer static rendering over client-side data fetching
-- Minimize JavaScript bundle size by avoiding large dependencies
-
-### Image Optimization
-
-- Uses ResponsiveImage component for optimized image delivery
-- Provides multiple image formats (WebP + original) for browser compatibility
-- Generates multiple sizes for responsive loading
-- Optimization process:
-  1. Place original images in `/public/images/`
-  2. Run `npm run optimize-images` to generate optimized versions
-  3. Optimized images are stored in `/public/images/optimized/`
-  4. ResponsiveImage component automatically selects the appropriate version
-- Available scripts:
-  - `npm run optimize-images`: Only optimizes images
-  - `npm run build:optimized`: Optimizes images then builds the site

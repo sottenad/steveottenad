@@ -9,18 +9,37 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+      {
+    id: "sow-analyzer",
+    title: "Case Study: Transforming Statement of Work Review with AI",
+    description: "An AI-powered system that streamlines Statement of Work reviews, uncovering risks and improvements in hours instead of days.",
+    tags: ["AI Document Analysis", "Statement of Work", "Risk Management", "Enterprise Productivity", "Contract Quality"],
+    image: "/images/sow.png",
+    slug: "sow-analyzer",
+    caseStudyPath: "./src/data/sow-analyzer.md"
+  },
+    {
+    id: "agenda-app",
+    title: "Case Study: AI-Powered Agenda Optimization",
+    description: "Building an AI-powered platform that transforms conference planning into a personalized, data-driven experience for attendees and organizers.",
+    tags: ["Event Personalization", "Agenda Optimization", "LLM Recommendations", "Multi Session Planning", "User Engagement"],
+    image: "/images/gsv.png",
+    slug: "agenda-app",
+    caseStudyPath: "./src/data/agenda-app.md"
+  },
   {
     id: "multimodal-rag",
     title: "Multi-modal RAG to Enable Creative Outfits",
     description: "Building a recommendation system that uses multi-modal RAG to suggest creative outfit combinations based on visual and textual inputs.",
     tags: ["RAG", "Multi-modal", "Computer Vision", "LLM", "Fashion"],
     image: "/images/fashion-llm.png",
-    slug: "multimodal-rag-creative-outfits"
+    slug: "multimodal-rag-creative-outfits",
+    caseStudyPath: "./src/data/fashion-multimodal.md"
   },
   {
     id: "gpt4o-mini",
     title: "From Tweets to Insights: 93% Accuracy with Fine-Tuned AI",
-    description: "Achieving remarkable sentiment analysis accuracy for airline customer feedback through strategic fine-tuning of GPT-4o-mini, delivering actionable intelligence with minimal training data.",
+    description: "Achieving very high sentiment analysis accuracy for airline customer feedback through strategic fine-tuning of GPT-4o-mini, delivering actionable intelligence with minimal training data.",
     tags: ["GPT-4o-mini", "Fine-tuning", "Sentiment Analysis", "Social Media", "Airlines", "NLP"],
     image: "/images/gpt4o-mini.png",
     slug: "airline-sentiment-analysis",
@@ -49,7 +68,7 @@ export const projects: Project[] = [
 export const aboutMe = {
   name: "Steve Ottenad",
   role: "Solution Architect",
-  bio: "I'm an experienced solution architect specializing in delivering valuable solutions for enterprice customers. ",
+  bio: "Solution Architect with 15+ years of experience turning complex enterprise challenges into scalable, high-impact solutions. ",
   github: "https://github.com/steveotten",
   linkedin: "https://linkedin.com/in/steveotten",
   profileImage: "/images/profile.png"

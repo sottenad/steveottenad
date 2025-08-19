@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(mkdir:*)",
+      "Bash(npm run lint)",
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(npm install:*)",
+      "Bash(find:*)",
+      "Bash(npm run build:*)",
+      "Bash(npx next build:*)",
+      "WebFetch(domain:motion.dev)",
+      "Bash(npm show:*)",
+      "Bash(npm uninstall:*)"
+    ],
+    "deny": []
+  }
+}

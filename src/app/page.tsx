@@ -11,7 +11,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="hero-gradient py-20 md:py-28">
         <div className="max-w-screen-lg mx-auto px-4">
-          <div className="max-w-2xl">
+          <div>
             <FadeIn direction="up" duration={0.6}>
               <h1 className="text-4xl md:text-5xl font-bold text-secondary">
                 {aboutMe.name}
@@ -29,7 +29,7 @@ export default function Home() {
             </FadeIn>
             <FadeIn direction="up" duration={0.6} delay={0.3}>
               <div className="mt-8">
-                <HoverMotion scale={1.05} lift={2}>
+                <HoverMotion scale={1.05} lift={1.2}>
                   <Link
                     href="/projects/"
                     className="btn-primary px-6 py-3 rounded-lg font-medium inline-flex items-center justify-center"

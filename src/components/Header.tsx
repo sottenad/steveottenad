@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import FadeIn from './FadeIn';
 
 export default function Header() {
   return (
